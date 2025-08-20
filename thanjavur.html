@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paddy Price Prediction</title>
+    <style>
+            body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+h1, h2 {
+    
+    color: #2c3e50;
+}
+
+h2 {
+    border-bottom: 3px solid #3498db;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+p {
+    font-size: 22px;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* Table Styling */
+table {
+    width: 60%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background: #2c3e50;
+    color: white;
+    
+}
+
+td {
+    font-size: 18px;
+}
+
+
+tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+button {
+    background: linear-gradient(45deg, #27ae60, #2ecc71);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+}
+
+
+#blockchain-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <h1>Paddy Price Prediction</h1>
+
+    <h2>Today's Price</h2>
+    <p id="today_price">Loading...</p>
+
+    <h2>Future Prices</h2>
+    <div id="future_prices">Loading...</div>
+
+    <div class="blockchain-container">
+        <h2>Blockchain-Stored Prices</h2>
+        <button onclick="fetchBlockchainData()">Load Blockchain Data</button>
+        <div id="blockchain_data">Click the button to view stored blockchain data.</div>
+
+        <h2>Blockchain Verification</h2>
+        <button onclick="verifyBlockchain()">Verify Blockchain</button>
+        <p id="verification_result"></p>
+    </div>
+
+    <script>
+    async function fetchPrices() {
+        try {
+            let todayResponse = await fetch('http://127.0.0.1:5000/today_price');
+            let futureResponse = await fetch('http://127.0.0.1:5000/future_prices')
+            if (!todayResponse.ok || !futureResponse.ok) {
+                throw new Error("Failed to fetch data from server.");
+            }
+
+
+            let todayData = await todayResponse.json();
+            let futureData = await futureResponse.json();
+            document.getElementById('today_price').innerText = `₹${todayData.predicted_price}`;
+            let tableHtml = `
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Predicted Price (₹)</th>
+                    </tr>
+            `;
+            futureData.forEach(item => {
+                tableHtml += `
+                    <tr>
+                        <td>${item.ds}</td>
+                        <td>${item.yhat.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+
+            tableHtml += `</table>`;
+            document.getElementById('future_prices').innerHTML = tableHtml;
+
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            document.getElementById('today_price').innerText = "Error fetching data";
+            document.getElementById('future_prices').innerText = "Error fetching data";
+        }
+    }
+
+    async function fetchBlockchainData() {
+        try {
+            let response = await fetch('http://127.0.0.1:5000/get_blockchain');
+            if (!response.ok) throw new Error("Failed to fetch blockchain data.");
+
+            let data = await response.json();
+            let chain = data.chain;
+
+            if (chain.length === 0) {
+                document.getElementById('blockchain_data').innerText = "No blockchain data available.";
+                return;
+            }
+
+            let tableHtml = `
+                <table>
+                    <tr>
+                        <th>Index</th>
+                        <th>Date</th>
+                        <th>Predicted Price (₹)</th>
+                        <th>Actual Price (₹)</th>
+                        <th>Hash</th>
+                    </tr>
+            `;
+
+            chain.forEach(block => {
+                tableHtml += `
+                    <tr>
+                        <td>${block.index}</td>
+                        <td>${block.date}</td>
+                        <td>${block.predicted_price}</td>
+                        <td>${block.actual_price}</td>
+                        <td style="font-size: 12px;">${block.previous_hash}</td>
+                    </tr>
+                `;
+            });
+
+            tableHtml += `</table>`;
+            document.getElementById('blockchain_data').innerHTML = tableHtml;
+
+        } catch (error) {
+            console.error("Error fetching blockchain data:", error);
+            document.getElementById('blockchain_data').innerText = "Error fetching blockchain data.";
+        }
+    }
+    async function verifyBlockchain() {
+        try {
+            let response = await fetch('http://127.0.0.1:5000/verify_blockchain');
+            if (!response.ok) throw new Error("Failed to verify blockchain.");
+
+            let data = await response.json();
+            let resultText = data.valid ? "✅ Blockchain is valid!" : "❌ Blockchain has been tampered with!";
+            document.getElementById('verification_result').innerText = resultText;
+
+        } catch (error) {
+            console.error("Error verifying blockchain:", error);
+            document.getElementById('verification_result').innerText = "Error verifying blockchain.";
+        }
+    }
+    fetchPrices();
+    </script>
+</body>
+</html>

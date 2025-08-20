@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriGuard - Real-Time Paddy Price Prediction & Blockchain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Additional custom styles for animations and smoothness */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-blue-600 p-4 text-white">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">AgriGuard</h1>
+            <div>
+                <a href="#" class="px-4 py-2 text-white hover:bg-blue-700 rounded-md">Home</a>
+                <a href="#about" class="px-4 py-2 text-white hover:bg-blue-700 rounded-md">About</a>
+                <a href="#contact" class="px-4 py-2 text-white hover:bg-blue-700 rounded-md">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-700 text-white text-center py-20">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 fade-in">Revolutionizing Agricultural Storage & Pricing</h2>
+            <p class="text-xl md:text-2xl mb-6 fade-in">AI-Powered Climate Control with Blockchain-based Transparency</p>
+            <button class="bg-yellow-400 text-gray-900 px-6 py-3 rounded-md text-lg font-semibold hover:bg-yellow-500 transition-all">
+                Explore AgriGuard
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white text-center">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-blue-700">What is AgriGuard?</h2>
+            <p class="text-lg text-gray-700 mb-6">AgriGuard uses AI and blockchain technology to manage agricultural produce storage, predict market prices, and ensure product traceability. By integrating live weather data, our platform optimizes storage conditions and predicts spoilage risk, ensuring that perishable goods maintain their value over time.</p>
+            <p class="text-lg text-gray-700 mb-6">With real-time smart auction alerts, AgriGuard empowers farmers, wholesalers, and traders with critical information to make informed decisions, thereby enhancing the efficiency and transparency of agricultural markets.</p>
+        </div>
+    </section>
+
+    <!-- Price Prediction & Blockchain Data Section -->
+    <section id="price" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8 text-blue-700">Paddy Price Prediction & Blockchain Transparency</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Predicted Paddy Price for Today</h3>
+                    <div id="predicted-price" class="text-3xl font-bold text-blue-600">Loading...</div>
+                    <button id="get-price" class="mt-4 bg-yellow-400 text-gray-900 px-6 py-2 rounded-md hover:bg-yellow-500 transition-all">Get Today’s Price</button>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Blockchain Transparency</h3>
+                    <p class="text-lg text-gray-700 mb-4">Our blockchain-based system ensures that every transaction is traceable, transparent, and secure. The data about the pricing history and auction alerts is logged immutably, preventing fraud and ensuring fairness in the market.</p>
+                    <button id="view-blockchain" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-all">View Blockchain Data</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-blue-700 text-white text-center">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8">Contact Us</h2>
+            <p class="text-lg mb-6">For more details on our services or inquiries, feel free to reach out to us.</p>
+            <button class="bg-yellow-400 text-gray-900 px-6 py-3 rounded-md text-lg font-semibold hover:bg-yellow-500 transition-all">
+                Get in Touch
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <p>&copy; 2025 AgriGuard. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript to simulate API calls for price and blockchain
+        document.getElementById('get-price').addEventListener('click', async function() {
+            // Simulate an API call to get the price prediction
+            setTimeout(() => {
+                const price = (Math.random() * (20 - 15) + 15).toFixed(2); // Random price between 15 and 20
+                document.getElementById('predicted-price').innerText = `$${price}`;
+            }, 1000);
+        });
+
+        document.getElementById('view-blockchain').addEventListener('click', function() {
+            // Simulate viewing blockchain data
+            alert('Blockchain data is currently being fetched and displayed.');
+        });
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriGuard - Real-Time Paddy Price Prediction & Blockchain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Additional custom styles for animations and smoothness */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-blue-600 p-4 text-white">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">AgriGuard</h1>
+            <div>
+                <a href="#" class="px-4 py-2 text-white hover:bg-blue-700 rounded-md">Home</a>
+                <a href="#about" class="px-4 py-2 text-white hover:bg-blue-700 rounded-md">About</a>
+                <a href="#contact" class="px-4 py-2 text-white hover:bg-blue-700 rounded-md">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-700 text-white text-center py-20">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 fade-in">Revolutionizing Agricultural Storage & Pricing</h2>
+            <p class="text-xl md:text-2xl mb-6 fade-in">AI-Powered Climate Control with Blockchain-based Transparency</p>
+            <button class="bg-yellow-400 text-gray-900 px-6 py-3 rounded-md text-lg font-semibold hover:bg-yellow-500 transition-all">
+                Explore AgriGuard
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white text-center">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-blue-700">What is AgriGuard?</h2>
+            <p class="text-lg text-gray-700 mb-6">AgriGuard uses AI and blockchain technology to manage agricultural produce storage, predict market prices, and ensure product traceability. By integrating live weather data, our platform optimizes storage conditions and predicts spoilage risk, ensuring that perishable goods maintain their value over time.</p>
+            <p class="text-lg text-gray-700 mb-6">With real-time smart auction alerts, AgriGuard empowers farmers, wholesalers, and traders with critical information to make informed decisions, thereby enhancing the efficiency and transparency of agricultural markets.</p>
+        </div>
+    </section>
+
+    <!-- Price Prediction & Blockchain Data Section -->
+    <section id="price" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8 text-blue-700">Paddy Price Prediction & Blockchain Transparency</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Predicted Paddy Price for Today</h3>
+                    <div id="predicted-price" class="text-3xl font-bold text-blue-600">Loading...</div>
+                    <button id="get-price" class="mt-4 bg-yellow-400 text-gray-900 px-6 py-2 rounded-md hover:bg-yellow-500 transition-all">Get Today’s Price</button>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Blockchain Transparency</h3>
+                    <p class="text-lg text-gray-700 mb-4">Our blockchain-based system ensures that every transaction is traceable, transparent, and secure. The data about the pricing history and auction alerts is logged immutably, preventing fraud and ensuring fairness in the market.</p>
+                    <button id="view-blockchain" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-all">View Blockchain Data</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-blue-700 text-white text-center">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8">Contact Us</h2>
+            <p class="text-lg mb-6">For more details on our services or inquiries, feel free to reach out to us.</p>
+            <button class="bg-yellow-400 text-gray-900 px-6 py-3 rounded-md text-lg font-semibold hover:bg-yellow-500 transition-all">
+                Get in Touch
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <p>&copy; 2025 AgriGuard. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript to simulate API calls for price and blockchain
+        document.getElementById('get-price').addEventListener('click', async function() {
+            // Simulate an API call to get the price prediction
+            setTimeout(() => {
+                const price = (Math.random() * (20 - 15) + 15).toFixed(2); // Random price between 15 and 20
+                document.getElementById('predicted-price').innerText = `$${price}`;
+            }, 1000);
+        });
+
+        document.getElementById('view-blockchain').addEventListener('click', function() {
+            // Simulate viewing blockchain data
+            alert('Blockchain data is currently being fetched and displayed.');
+        });
+    </script>
+
+</body>
+</html>
